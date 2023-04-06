@@ -98,7 +98,7 @@ const AppNavigator = ({route}) => {
                 <Icon as={Ionicons} name="language-outline" color={color} size={'30px'} />
                 </Box>
               ),
-              headerShown: true
+              headerShown: false
             }}
           />
         </Tab.Navigator>

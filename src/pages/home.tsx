@@ -82,7 +82,7 @@ const Home = ({navigation}: any) => {
               height: 100,
             }}
           >
-            <Image source={require("../../assets/left.png")} alt="right" />
+            <Image source={require("../../assets/left.png")} alt="right"/>
             <Image source={require("../../assets/right.png")} alt="left" />
             {/* Other content on the right side */}
           </View>
@@ -90,13 +90,13 @@ const Home = ({navigation}: any) => {
             <Heading style={{marginBottom: 20, marginTop: 7, color: '#CDD3DE'}}>Sign Language Translator</Heading>
           </View>
           <View style={{flexDirection: 'column', gap: 12, backgroundColor: "#302D25"}}>
-            <Text style={{textAlign: 'center', color: '#CDD3DE'}}>
+            <Text style={{textAlign: 'center', color: '#CDD3DE', fontSize: 12}}>
               Your Words Matter, And our Translation tool is designed to do just
               that. IRIS makes Verbal and Non Verbal Communication seem just
               easy and Seamless.
             </Text>
-            <Text style={{textAlign: 'center', color: '#BB86FC'}}>IRIS Connecting Everyone, Anywhere, Anytime</Text>
-            <Text style={{textAlign: 'center', marginBottom: 40, color: '#CDD3DE'}}>
+            <Text style={{textAlign: 'center', color: '#BB86FC', fontSize: 12}}>IRIS Connecting Everyone, Anywhere, Anytime</Text>
+            <Text style={{textAlign: 'center', marginBottom: 40, color: '#CDD3DE', fontSize: 12}}>
               IRIS is a One Stop place to Communicate with anyone, anywhere and
               anytime. With Our Swift Sign Language Translator you can
               communicate with anyone over any dialect easily..
