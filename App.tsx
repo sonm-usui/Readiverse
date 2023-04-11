@@ -5,6 +5,8 @@ import { NativeBaseProvider, theme } from 'native-base';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import AppNavigator from './src/components/navigate-button';
+import { Provider } from 'react-redux';
+import store from './src/state/store/store';
 
 export default function App() {
 
@@ -12,6 +14,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
+      <Provider store={store}>
       <NavigationContainer>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
@@ -29,6 +32,7 @@ export default function App() {
           </NativeBaseProvider>
         </ScrollView>
       </NavigationContainer>
+      </Provider>
     </SafeAreaProvider>
   );
 }

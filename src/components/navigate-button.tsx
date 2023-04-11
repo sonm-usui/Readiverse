@@ -5,14 +5,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NativeBaseProvider, Box, Icon, VStack, Center, HStack, Text, View } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import Home from '../pages/home';
-import { SearchScreen } from '../pages/search';
 import { MyFeedsScreen } from '../pages/my-feeds';
-import { CreateFeeds } from '../pages/create-feeds';
 import styled from 'styled-components';
 import { styles } from './navigate-button.style';
+import { FeedsScreen } from '../pages/feeds';
+
 // Create the bottom tab navigator
 const Tab = createBottomTabNavigator();
-
 
 // Define the options for the bottom tab navigator
 const tabOptions = {
@@ -32,7 +31,7 @@ const tabOptions = {
 };
 
 // Define the app component
-const AppNavigator = ({route}) => {
+const AppNavigator = ({route}: any) => {
   const isFocused = useIsFocused();
   const routeName = getFocusedRouteNameFromRoute(route) || 'Home';
   return (
@@ -50,7 +49,7 @@ const AppNavigator = ({route}) => {
               headerShown: false
             }}
           />
-          <Tab.Screen
+          {/* <Tab.Screen
             name="Search"
             component={SearchScreen}
             options={{
@@ -64,8 +63,8 @@ const AppNavigator = ({route}) => {
               ),
               headerShown: true
             }}
-          />
-          <Tab.Screen
+          /> */}
+          {/* <Tab.Screen
             name="Add"
             component={CreateFeeds}
             options={{
@@ -76,17 +75,17 @@ const AppNavigator = ({route}) => {
               ),
               headerShown: true
             }}
-          />
+          /> */}
           <Tab.Screen
             name="Profile"
-            component={MyFeedsScreen}
+            component={FeedsScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Profile' ? styles.btn: {}}>
                 <Icon as={Ionicons} name="albums-outline" color={color} size={'30px'} />
                 </Box>
               ),
-              headerShown: true
+              headerShown: false
             }}
           />
           <Tab.Screen

@@ -13,9 +13,11 @@
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@reduxjs/toolkit": "^1.9.3",
     "@use-expo/font": "^2.0.0",
     "expo": "~48.0.9",
     "expo-app-loading": "^2.1.1",
+    "expo-av": "~13.2.1",
     "expo-linear-gradient": "~12.1.2",
     "expo-speech": "~11.1.1",
     "expo-status-bar": "~1.4.4",
@@ -28,6 +30,7 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-tab-view": "^3.5.1",
+    "react-redux": "^8.0.5",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {

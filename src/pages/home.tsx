@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     container: {
       height: 72,
       paddingLeft: 24,
-      backgroundColor: '#201E19',
+      backgroundColor: '#302D25',
       justifyContent: 'center'
     },
     logo: {
@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
 
 const Home = ({navigation}: any) => {
     return (
-      <SafeAreaView>
-        <View style={styles.container}>
+      <>
+      <Box backgroundColor="#302D25" safeAreaTop>
+        <Box style={styles.container}>
           <Image
             source={require("../../assets/IRIS-logo.png")}
             alt="iris-logo"
             style={styles.logo}
           ></Image>
-        </View>
+        </Box>
         <View>
           <ImageBackground
             style={{ flex: 0.5, height: 285 }}
@@ -61,7 +62,7 @@ const Home = ({navigation}: any) => {
         <View style={styles.containers}>
           <LinearGradient
             // Background Linear Gradient
-            colors={["#201E19", "transparent", "#302D25"]}
+            colors={["#302D25", "transparent", "#302D25"]}
             style={styles.background}
             >
               <View style={{flexDirection: 'column', top: 50}}>
@@ -103,7 +104,8 @@ const Home = ({navigation}: any) => {
             </Text>
           </View>
         </View>
-      </SafeAreaView>
+        </Box>
+        </>
     );
 }
 
