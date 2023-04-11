@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, theme } from 'native-base';
@@ -7,11 +7,12 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import AppNavigator from './src/components/navigate-button';
 import { Provider } from 'react-redux';
 import store from './src/state/store/store';
+import { fetchData } from './src/services/api.services';
+import { useCallback } from 'react';
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
-
   return (
     <SafeAreaProvider>
       <Provider store={store}>

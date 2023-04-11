@@ -1,19 +1,24 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { Box, Heading, Icon, Input, InputGroup, ScrollView, Image, HStack } from 'native-base';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
-import { fetchDictionaryData } from '../services/api.services';
+import { fetchData, fetchDictionaryData, updateData } from '../services/api.services';
+import { addFavorites, getFavorite, SEARCH_SAVED, selectFavorite } from '../state/search-saved/search-saved.slice';
+import { useAppDispatch, useAppSelector } from '../state/store/store';
 
 export const FeedsScreen = () => {
   const [searchText, setSearchText] = useState('');
   const [data, setData] = useState([]);
+  const [myFav, setMyFav] = useState([]);
 
+  const myFavData = useAppSelector(selectFavorite);
+  const dispatch = useAppDispatch();
   const handleSearch = (text: any) => {
     setSearchText(text);
-    // Add your search logic here
   };
-
+  
   const searchItems = async () => {
     fetchDictionaryData(searchText).then(response => response.json())
     .then(response => {
@@ -22,13 +27,15 @@ export const FeedsScreen = () => {
     })
     .catch(err => console.error(err));
   }
-  const DefinitionCard = ({val}: any)=>{
-    console.log(val);
+  const DefinitionCard = ({val, bookmarked, setMarked}: any) => {
 
+    const addToFavorite = (val: any) => {
+      bookmarked(val);
+    }
     return (
     <Box width="80%" backgroundColor="#2B2730" borderRadius="20" flex={1} padding="4" opacity="0.5" gap="2">
       <Box flex={3}>
-      <Heading style={{color: '#BB86FC'}}>{val?.word}</Heading>
+      <Heading style={{color: '#BB86FC'}}>{val?.word}{setMarked}</Heading>
       </Box>
       <Box flex={2}>
       <Text numberOfLines={2} style={{color: '#FFFFFF'}}>{val?.definition}</Text>
@@ -38,14 +45,39 @@ export const FeedsScreen = () => {
       </Box>
       <Box flex={2} flexDirection="row" justifyContent="space-between">
        <Text style={{color: '#BB86FC'}} >~ {val?.author}</Text>
-       <Icon as={Ionicons} name="bookmark-outline" color="#BB86FC" size={'30px'} />
+       {
+          setMarked? <Icon as={Ionicons} name="bookmark" color="#BB86FC" size={'30px'}/> : <Icon as={Ionicons} name="bookmark-outline" color="#BB86FC" size={'30px'} onPress={ () => addToFavorite(val)}/>
+        }
       </Box>
     </Box>
     )
   };
-  
+
+  const getDataForFav = async() => {
+      if(myFavData){
+        setMyFav(myFavData);
+      } else {
+        const data = await fetchData() || [];
+        setMyFav(data)
+        dispatch(getFavorite(data));
+      }
+  }
+
+  useFocusEffect( 
+     useCallback( () => {
+      getDataForFav();
+  }, [])
+  );
+
+  const addToFav = async (val: any) => {
+        dispatch(addFavorites(val));
+  }
+
+  const isBookmarked = (val: any) => {
+    return (myFavData || []).some( (value: any) => value.defid === val.defid );
+  }
     return (
-      <>
+       <>
         <Box safeAreaTop backgroundColor="#302D25" flex={1}>
           <Box flex={0.5} style={{ height: 72,
       paddingLeft: 24,
@@ -87,7 +119,7 @@ export const FeedsScreen = () => {
               <Box  flex={1} justifyContent="center" alignItems="center" gap="5">
               { data.length ? 
                 data.map( (value) => {
-                 return <DefinitionCard key={value['defid']} val={value}>Hello</DefinitionCard>
+                 return <DefinitionCard key={value['defid']} val={value} bookmarked={addToFav} setMarked={isBookmarked(value)}></DefinitionCard>
                 }) : <Text style={{color: 'white'}}>No search results</Text>
               }
               </Box>

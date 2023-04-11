@@ -9,6 +9,7 @@ import { MyFeedsScreen } from '../pages/my-feeds';
 import styled from 'styled-components';
 import { styles } from './navigate-button.style';
 import { FeedsScreen } from '../pages/feeds';
+import { CreateFeeds } from '../pages/create-feeds';
 
 // Create the bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -64,25 +65,25 @@ const AppNavigator = ({route}: any) => {
               headerShown: true
             }}
           /> */}
-          {/* <Tab.Screen
+          <Tab.Screen
             name="Add"
             component={CreateFeeds}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Add' ? styles.btn: {}}>
-                <Icon as={Ionicons} name="card-outline" color={color} size={'35px'} />
+                <Icon as={Ionicons} name="bookmark" color={color} size={'35px'} />
                 </Box>
               ),
-              headerShown: true
+              headerShown: false
             }}
-          /> */}
+          />
           <Tab.Screen
             name="Profile"
             component={FeedsScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Profile' ? styles.btn: {}}>
-                <Icon as={Ionicons} name="albums-outline" color={color} size={'30px'} />
+                <Icon as={Ionicons} name="search" color={color} size={'30px'} />
                 </Box>
               ),
               headerShown: false
