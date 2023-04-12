@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "753050091519",
+    "firebase_url": "https://readiverse-1-default-rtdb.firebaseio.com",
+    "project_id": "readiverse-1",
+    "storage_bucket": "readiverse-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753050091519:android:ec777055b24f819b6c31ca",
+        "android_client_info": {
+          "package_name": "com.sonamusui.readiverse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753050091519-ijdaf386dm9mt67ks7o5h3d5317h4bvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4ZseobhQLtzKSBjzV0EwQAHt25LQxSqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753050091519-ijdaf386dm9mt67ks7o5h3d5317h4bvt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "753050091519-krioqmu0ks8ncre86605r1hb37it3qkg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.readiverse",
+                "app_store_id": "123456789"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
