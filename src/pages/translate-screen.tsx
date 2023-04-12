@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const MyFeedsScreen = () => {
+export const TranslateScreen = () => {
   const [text, setText] = useState("");
   const [value1, setValue] = useState("Text");
   const [recording, setRecording] = useState();

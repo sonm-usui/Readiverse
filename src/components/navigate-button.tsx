@@ -5,11 +5,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NativeBaseProvider, Box, Icon, VStack, Center, HStack, Text, View } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import Home from '../pages/home';
-import { MyFeedsScreen } from '../pages/my-feeds';
+import { TranslateScreen } from '../pages/translate-screen';
 import styled from 'styled-components';
 import { styles } from './navigate-button.style';
-import { FeedsScreen } from '../pages/feeds';
-import { CreateFeeds } from '../pages/create-feeds';
+import { SearchScreen } from '../pages/search-screen';
+import { MyFavoriteScreen } from '../pages/my-favorite';
 
 // Create the bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -50,24 +50,9 @@ const AppNavigator = ({route}: any) => {
               headerShown: false
             }}
           />
-          {/* <Tab.Screen
-            name="Search"
-            component={SearchScreen}
-            options={{
-              tabBarIcon: ({ color, size}) => (
-                <Box style= {routeName === 'Search' ? styles.btn: {}}>
-                  <Icon as={Ionicons} name="hand-right-outline"
-                  color={color}
-                   size={'30px'}
-                   />
-              </Box>
-              ),
-              headerShown: true
-            }}
-          /> */}
           <Tab.Screen
             name="Add"
-            component={CreateFeeds}
+            component={MyFavoriteScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Add' ? styles.btn: {}}>
@@ -79,7 +64,7 @@ const AppNavigator = ({route}: any) => {
           />
           <Tab.Screen
             name="Profile"
-            component={FeedsScreen}
+            component={SearchScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Profile' ? styles.btn: {}}>
@@ -91,7 +76,7 @@ const AppNavigator = ({route}: any) => {
           />
           <Tab.Screen
             name="Language"
-            component={MyFeedsScreen}
+            component={TranslateScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Box style= {routeName === 'Language' ? styles.btn: {}}>
