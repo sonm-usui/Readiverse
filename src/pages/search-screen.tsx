@@ -138,7 +138,7 @@ export const SearchScreen = () => {
         <Box flex={7} backgroundColor='#302D25'>
           <ScrollView>
             <Box flex={1} justifyContent='center' alignItems='center' gap='5'>
-              {data.length ? (
+              {data && data.length ? (
                 data.map((value) => {
                   return (
                     <DefinitionCard
