@@ -37,6 +37,8 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-tab-view": "^3.5.1",
+    "react-native-video": "^5.2.1",
+    "react-native-webview": "11.1.26",
     "react-redux": "^8.0.5",
     "styled-components": "^5.3.9"
   },

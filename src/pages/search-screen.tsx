@@ -73,6 +73,7 @@ export const SearchScreen = () => {
       .then((response) => response.json())
       .then((response) => {
         setData(response['list']);
+        console.log(response);
         setSearchText('');
       })
       .catch((err) => console.error(err));
