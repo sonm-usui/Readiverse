@@ -13,6 +13,8 @@ import {
 import { Audio, Video } from 'expo-av';
 import { WebView } from 'react-native-webview';
 import React from 'react';
+import * as Location from 'expo-location';
+
 
 const styles = StyleSheet.create({
   // container: {
@@ -51,6 +53,8 @@ export const TranslateScreen = () => {
     setValue(value);
     setText('');
   };
+  const [location, setLocation] = useState(null);
+  const [placeName, setPlaceName] = useState(null);
 
   const handleTextChange = (value: any) => {
     setText(value);
@@ -109,6 +113,25 @@ export const TranslateScreen = () => {
   ]
   
   useEffect(() => {
+
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        // setErrorMsg('Permission to access location was denied');
+        return;
+      }
+  
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location as any);
+
+      let place = await Location.reverseGeocodeAsync({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+      console.log('pppllllllacceeeee', place);
+      setPlaceName(place[0] as any);
+    })();
+
     const intervalId = setInterval(() => {
       setImageIndex((imageIndex + 1) % characters.length);
     }, 1000);
@@ -196,6 +219,29 @@ export const TranslateScreen = () => {
                   </Box>
                 </Box>
               )}
+
+              {value1 === 'Quick Conversation' && (
+                <Box flex={1}>
+                  {/* <View style={styles.container}>
+                    <Button
+                      title={recording ? "Stop Recording" : "Start Recording"}
+                      onPress={recording ? stopRecording : startRecording}
+                    />
+                  </View> */}
+                  <Text style={{ color: '#CDD3DE', padding: 5 }}>{text}</Text>
+                  <Box flex={0.8} justifyContent='center' alignItems='center'>
+                    {/* <Box
+                      backgroundColor='#BB86FC'
+                      padding='4'
+                      borderRadius='50'
+                    > */}
+                     <WebView source={{html: htmlContent}}>
+
+                     </WebView>
+                    {/* </Box> */}
+                  </Box>
+                </Box>
+              )}
             </Box>
           </Box>
         </Box>
@@ -203,19 +249,30 @@ export const TranslateScreen = () => {
           <Button onPress={convertToSign}>Convert</Button>
         )} */}
         <Box flex={0.4}>
-          <Box flex='1' margin='30px' marginTop='0px' flexDirection="column">
-          {/* {characters.map((char, index) => ( */}
-        <Animated.Image
-          key={characters.length - 1}
-          source={assets[characters[characters.length - 1]?.toLowerCase().charCodeAt(0) - 97]}
-          style={{
-            width: "auto",
-            height: 160,
-          }}
-          resizeMode="contain"
-        />
+          <Box flex='1' margin='30px' marginTop='0px' flexDirection='column'>
+            <Animated.Image
+              key={characters.length - 1}
+              source={
+                assets[
+                  characters[characters.length - 1]
+                    ?.toLowerCase()
+                    .charCodeAt(0) - 97
+                ]
+              }
+              style={{
+                width: 'auto',
+                height: 160,
+              }}
+              resizeMode='contain'
+            />
           </Box>
         </Box>
+        {location && (
+          <Text>
+            Location:{' '}
+            {(placeName as any)?.city + ',' + (placeName as any)?.country}
+          </Text>
+        )}
       </Box>
     </>
   );
