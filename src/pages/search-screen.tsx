@@ -1,18 +1,27 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { Box, Heading, Icon, Input, InputGroup, ScrollView, Image, HStack } from 'native-base';
+import { Box, Heading, Icon, Input, InputGroup, ScrollView, Image, HStack, Button } from 'native-base';
 import { useCallback, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { fetchData, fetchDictionaryData, updateData } from '../services/api.services';
 import { addFavorites, getFavorite, SEARCH_SAVED, selectFavorite } from '../state/search-saved/search-saved.slice';
 import { useAppDispatch, useAppSelector } from '../state/store/store';
+import DetailModal from './detail-modal';
 
 
 const DefinitionCard = ({ val, bookmarked, setMarked }: any) => {
+  const [showModal, setShowModal] = useState(false);
+  const [content, setContent] = useState();
+
   const addToFavorite = (val: any) => {
     bookmarked(val);
   };
+
+  const showDetails = (val: any) => {
+    setContent(val);
+    setShowModal(true);
+  }
   return (
     <Box
       width='80%'
@@ -52,7 +61,13 @@ const DefinitionCard = ({ val, bookmarked, setMarked }: any) => {
             onPress={() => addToFavorite(val)}
           />
         )}
+        <Button backgroundColor='#2B2730' onPress={() => showDetails(val)}>View Details</Button>
       </Box>
+      <DetailModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          data={content}
+        ></DetailModal>
     </Box>
   );
 };
@@ -60,7 +75,7 @@ const DefinitionCard = ({ val, bookmarked, setMarked }: any) => {
 export const SearchScreen = () => {
   const [searchText, setSearchText] = useState('');
   const [data, setData] = useState([]);
-
+  const [currentValue, setCurrentValue] = useState();
   const myFavData = useAppSelector(selectFavorite);
   const dispatch = useAppDispatch();
 

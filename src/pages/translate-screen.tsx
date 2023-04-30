@@ -66,7 +66,7 @@ export const TranslateScreen = () => {
     }
   };
 
-  const htmlContent = '<video src="https://www.ablinq.co/wp-content/uploads/2021/09/Website-Background-Social-Compressed-NO-LOGO.mp4" width="950" height="650" muted autoplay></video>'; // replace with your HTML code
+  const htmlContent = '<video src="https://www.ablinq.co/wp-content/uploads/2021/09/Website-Background-Social-Compressed-NO-LOGO.mp4" width="950" height="650" muted autoplay controls></video>'; // replace with your HTML code
 
   const [isPlaying, setIsPlaying] = useState(false);
 
