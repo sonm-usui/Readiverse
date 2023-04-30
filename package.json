@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@expo/webpack-config": "^18.0.1",
     "@legendapp/motion": "^2.2.0",
     "@react-native-firebase/app": "^17.4.2",
     "@react-native-firebase/messaging": "^17.4.2",
@@ -32,6 +33,7 @@
     "expo-status-bar": "~1.4.4",
     "native-base": "^3.4.28",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.71.6",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-pager-view": "6.1.2",
@@ -40,6 +42,7 @@
     "react-native-svg": "13.4.0",
     "react-native-tab-view": "^3.5.1",
     "react-native-video": "^5.2.1",
+    "react-native-web": "~0.18.10",
     "react-native-webview": "11.26.0",
     "react-redux": "^8.0.5",
     "styled-components": "^5.3.9"
