@@ -61,12 +61,13 @@ const DefinitionCard = ({ val, bookmarked, setMarked }: any) => {
             onPress={() => addToFavorite(val)}
           />
         )}
-        <Button backgroundColor='#2B2730' onPress={() => showDetails(val)}>View Details</Button>
       </Box>
+        <Button backgroundColor='#2B2730' onPress={() => showDetails(val)}>View Details</Button>
       <DetailModal
           showModal={showModal}
           setShowModal={setShowModal}
           data={content}
+          title={val?.word}
         ></DetailModal>
     </Box>
   );

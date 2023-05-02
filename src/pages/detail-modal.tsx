@@ -4,8 +4,10 @@ import {Image, Modal, Text, VStack} from "native-base";
 export function DetailModal({
   showModal,
   setShowModal,
-  data
+  data,
+  title
 }: any) {
+
   return (
     <Modal
       size="full"
@@ -16,22 +18,24 @@ export function DetailModal({
         setShowModal(false);
       }}
     >
-      <Modal.Content bgColor="white" height="100%">
+      <Modal.Content bgColor="#2B2730" height="100%">
         <Modal.CloseButton />
-        <Modal.Header>Words Detail</Modal.Header>
+        <Modal.Header bgColor="#2B2730">
+          <Text style={{ color: '#BB86FC' }}>{title}</Text>
+          </Modal.Header>
         <Modal.Body>
           <VStack px="12px" alignItems="center" space="16px">
             <VStack alignItems="center">
-              <Text fontSize="12px" fontWeight={500} color="gray.700">
-                1
+              <Text fontSize="12px" fontWeight={500} style={{ color: '#FFFFFF' }}>
+              {data?.definition}
               </Text>
             </VStack>
             <VStack space="2px">
-              <Text fontSize="16px" fontWeight={500}>
-                2
+              <Text fontSize="16px" fontWeight={500} style={{ color: '#FFFFFF' }}>
+                Example: {data?.examples}
               </Text>
-              <Text fontSize="14px" color="black60">
-                3
+              <Text fontSize="14px" style={{ color: '#FFFFFF' }}>
+                {data?.author}
               </Text>
             </VStack>
           </VStack>
