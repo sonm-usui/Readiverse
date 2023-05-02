@@ -12,6 +12,7 @@
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^18.0.1",
     "@legendapp/motion": "^2.2.0",
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-firebase/app": "^17.4.2",
     "@react-native-firebase/messaging": "^17.4.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
@@ -45,6 +46,7 @@
     "react-native-web": "~0.18.10",
     "react-native-webview": "11.26.0",
     "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {

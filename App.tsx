@@ -12,6 +12,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications'
 import { registerForPushNotificationsAsync } from './src/components/notification/notification';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './src/services/redux-persist';
 
 
 
@@ -30,7 +32,6 @@ export default function App() {
     }) as any;
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
     }) as any;
 
     return () => {
@@ -43,6 +44,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <NavigationContainer>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
@@ -61,6 +63,7 @@ export default function App() {
           </NativeBaseProvider>
         </ScrollView>
       </NavigationContainer>
+      </PersistGate>
       </Provider>
     </SafeAreaProvider>
   );

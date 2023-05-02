@@ -16,7 +16,6 @@ export const savedSlice = createSlice({
     reducers: {
       getFavorite: (state: any, action: any) => {
         state.value = [...action.payload];
-        console.log(action.payload)
       },
       addFavorites: (state: any, action: any) => {
         const value = [...state.value, action.payload];

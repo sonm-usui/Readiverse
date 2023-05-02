@@ -44,7 +44,6 @@ export const MyFavoriteScreen = () => {
   const myFavData = useAppSelector(selectFavorite);
   const [myFav, setMyFav] = useState([]);
   const dispatch = useAppDispatch();
-
   const getDataForFav = async() => {
     if(myFavData){
       setMyFav(myFavData);
@@ -80,7 +79,7 @@ useFocusEffect(
                     );
                   })
                 ) : (
-                  <Text style={{ color: 'white' }}>No search results</Text>
+                  <Text style={{ color: 'white' }}>No favorites</Text>
                 )}
               </Box>
             </ScrollView>
