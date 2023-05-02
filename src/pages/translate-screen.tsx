@@ -128,7 +128,6 @@ export const TranslateScreen = () => {
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       });
-      console.log('pppllllllacceeeee', place);
       setPlaceName(place[0] as any);
     })();
 

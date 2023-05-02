@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { Box, Heading, Icon, Input, InputGroup, ScrollView, Image, HStack, Button } from 'native-base';
 import { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Linking, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { fetchData, fetchDictionaryData, updateData } from '../services/api.services';
 import { addFavorites, getFavorite, SEARCH_SAVED, selectFavorite } from '../state/search-saved/search-saved.slice';

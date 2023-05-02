@@ -1,6 +1,6 @@
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, Linking, StyleSheet, View } from 'react-native';
 import { Box, Heading, Text, HStack } from 'native-base';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Image, VStack } from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -46,7 +46,16 @@ const styles = StyleSheet.create({
 const Home = ({navigation}: any) => {
   const [value, setValue] = useState('');
   const isFocused = useIsFocused();
-
+   useEffect(() => {
+    Linking.addEventListener('url', (event) => {
+      const { path, queryParams } = (Linking as any).parse(event.url);
+            if (path === 'Profile') {
+        const { id } = queryParams;
+        navigation.navigate('Profile', { id });
+      }
+    });
+   }, [])
+   
     return (
       isFocused ? <>
       <Box backgroundColor="#302D25" safeAreaTop>
