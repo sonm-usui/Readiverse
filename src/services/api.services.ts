@@ -13,7 +13,6 @@ export const fetchDictionaryData = (data: any) => {
 }
 
 export const fetchData = async (userId: any = 1) => {
-
     return await fetch(
       //TODO: Development use - Will have to move this url in env
       `https://readiverse-1-default-rtdb.firebaseio.com/user.json`,

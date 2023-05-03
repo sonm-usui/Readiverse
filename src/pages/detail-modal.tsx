@@ -8,15 +8,17 @@ export function DetailModal({
   title
 }: any) {
 
+  const handleClick = React.useCallback(() => setShowModal(false), [data]);
+  
   return (
     <Modal
       size="full"
       margin={0}
       justifyContent="flex-end"
       isOpen={showModal}
-      onClose={() => {
-        setShowModal(false);
-      }}
+      onClose={
+        handleClick
+      }
     >
       <Modal.Content bgColor="#2B2730" height="100%">
         <Modal.CloseButton />

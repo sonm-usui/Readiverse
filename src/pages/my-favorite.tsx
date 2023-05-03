@@ -2,7 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { Box, Heading, HStack, Icon, Input } from 'native-base';
 import { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, SectionList, StyleSheet, Text, View } from 'react-native';
+import { useFetch } from '../custom-hooks/api-hooks';
 import { fetchData } from '../services/api.services';
 import { getFavorite, selectFavorite } from '../state/search-saved/search-saved.slice';
 import { useAppDispatch, useAppSelector } from '../state/store/store';
@@ -44,6 +45,8 @@ export const MyFavoriteScreen = () => {
   const myFavData = useAppSelector(selectFavorite);
   const [myFav, setMyFav] = useState([]);
   const dispatch = useAppDispatch();
+  const [refreshing, setRefreshing] = useState(false);
+
   const getDataForFav = async() => {
     if(myFavData){
       setMyFav(myFavData);
@@ -59,8 +62,16 @@ useFocusEffect(
     getDataForFav();
 }, [])
 );
+
+const onRefresh =  () => {
+  setRefreshing(true);
+  setRefreshing(false);
+};
+
     return (
-      <>
+      <ScrollView refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
         <Box safeAreaTop backgroundColor='#302D25' flex={1}>
           <Box
             flex={0.5}
@@ -85,6 +96,6 @@ useFocusEffect(
             </ScrollView>
           </Box>
         </Box>
-      </>
+      </ScrollView>
     );
 }

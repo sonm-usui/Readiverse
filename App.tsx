@@ -2,11 +2,11 @@ import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, theme } from 'native-base';
-import { Button, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Platform, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import AppNavigator from './src/components/navigate-button';
 import { Provider } from 'react-redux';
-import store from './src/state/store/store';
+import store, { useAppDispatch } from './src/state/store/store';
 import { fetchData } from './src/services/api.services';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import * as Device from 'expo-device';
@@ -14,8 +14,7 @@ import * as Notifications from 'expo-notifications'
 import { registerForPushNotificationsAsync } from './src/components/notification/notification';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './src/services/redux-persist';
-
-
+import RNRestart from 'react-native-restart';
 
 export default function App() {
   
@@ -23,6 +22,7 @@ export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token as string));
@@ -40,6 +40,11 @@ export default function App() {
     };
   }, []);
   
+  const onRefresh = useCallback( async () => {
+    setRefreshing(true);
+    setRefreshing(false);
+  }, []);
+
   const Stack = createNativeStackNavigator();
   return (
     <SafeAreaProvider>
@@ -50,6 +55,9 @@ export default function App() {
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="always"
           alwaysBounceVertical={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
           <NativeBaseProvider theme={theme}>
             <StatusBar translucent backgroundColor="transparent" />

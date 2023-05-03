@@ -4,6 +4,7 @@ import { Box, Heading, Icon, Input, InputGroup, ScrollView, Image, HStack, Butto
 import { useCallback, useState } from 'react';
 import { FlatList, Linking, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import ErrorBoundary from '../error-handler/error-bounderies';
 import { fetchData, fetchDictionaryData, updateData } from '../services/api.services';
 import { addFavorites, getFavorite, SEARCH_SAVED, selectFavorite } from '../state/search-saved/search-saved.slice';
 import { useAppDispatch, useAppSelector } from '../state/store/store';
@@ -63,12 +64,14 @@ const DefinitionCard = ({ val, bookmarked, setMarked }: any) => {
         )}
       </Box>
         <Button backgroundColor='#2B2730' onPress={() => showDetails(val)}>View Details</Button>
+        <ErrorBoundary>
       <DetailModal
           showModal={showModal}
           setShowModal={setShowModal}
           data={content}
           title={val?.word}
         ></DetailModal>
+        </ErrorBoundary>
     </Box>
   );
 };

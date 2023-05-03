@@ -7,6 +7,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components';
 import { Motion } from "@legendapp/motion"
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { AuthenticatedScreen } from './hoc-check';
+import { withAuth } from '../components/authenticated';
+import { useFetch } from '../custom-hooks/api-hooks';
 
 const styles = StyleSheet.create({
     container: {
@@ -43,9 +46,15 @@ const styles = StyleSheet.create({
   });
   
 
+  const MyScreen = () => {
+    return <Text>Welcome User!</Text>;
+  };
+
 const Home = ({navigation}: any) => {
   const [value, setValue] = useState('');
   const isFocused = useIsFocused();
+  const [data, isLoading, error] = useFetch('https://readiverse-1-default-rtdb.firebaseio.com/user.json');
+  
    useEffect(() => {
     Linking.addEventListener('url', (event) => {
       const { path, queryParams } = (Linking as any).parse(event.url);
@@ -58,6 +67,7 @@ const Home = ({navigation}: any) => {
    
     return (
       isFocused ? <>
+      {withAuth(MyScreen)}
       <Box backgroundColor="#302D25" safeAreaTop>
         <Box style={styles.container}>
           <Image
