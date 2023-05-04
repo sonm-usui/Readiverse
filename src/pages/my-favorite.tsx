@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import { RefreshControl, ScrollView, SectionList, StyleSheet, Text, View } from 'react-native';
 import { useFetch } from '../custom-hooks/api-hooks';
 import { fetchData } from '../services/api.services';
-import { getFavorite, selectFavorite } from '../state/search-saved/search-saved.slice';
+import { fetchAsyncThunk, getFavorite, selectFavorite } from '../state/search-saved/search-saved.slice';
 import { useAppDispatch, useAppSelector } from '../state/store/store';
 
 
@@ -51,20 +51,19 @@ export const MyFavoriteScreen = () => {
     if(myFavData){
       setMyFav(myFavData);
     } else {
-      const data = await fetchData() || [];
-      setMyFav(data)
-      dispatch(getFavorite(data));
+      dispatch(fetchAsyncThunk(1));
     }
 }
 
 useFocusEffect( 
    useCallback( () => {
     getDataForFav();
-}, [])
+}, [myFav])
 );
 
 const onRefresh =  () => {
   setRefreshing(true);
+  dispatch(fetchAsyncThunk(1));
   setRefreshing(false);
 };
 

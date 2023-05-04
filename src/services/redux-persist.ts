@@ -14,7 +14,7 @@ const persistedReducer = persistReducer(persistConfig, savedReducer);
 
 export const store = createStore(persistedReducer);
 export const persistor = persistStore(store, null, () => {
-  console.log('DATA is persisted successfully', store);
+  // console.log('DATA is persisted successfully', store);
 });
 
 setInterval(() => {
